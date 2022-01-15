@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd 
 from PIL import Image
 import os
+import altair as alt
+
 
 st.set_page_config(page_title="Choix de stage",layout='wide')
 
@@ -46,3 +48,31 @@ else :
     st.markdown("<hr style=' text-align : center; border-color : rgba(0,0,0,0); margin-top: 15px; margin-bottom: 15px;'>",unsafe_allow_html = True)
     st.download_button('Télécharger les infos', dt.to_csv())
 
+st.markdown("<hr style=' text-align : center; border-color : rgba(0,0,0,0); margin-top: 15px; margin-bottom: 15px;'>",unsafe_allow_html = True)
+st.markdown("<hr style=' text-align : center; border-color : rgba(0,0,0,0); margin-top: 15px; margin-bottom: 15px;'>",unsafe_allow_html = True)
+bar_stage1 = alt.Chart(annuaire).mark_bar().encode(
+        alt.X("Secteur du stage 1:N",
+              axis=alt.Axis(labelAngle=-20),
+              sort=alt.EncodingSortField(field="Secteur du stage 1", op="count", order='descending')),
+        alt.Y("count(Secteur du stage 1):Q"),
+        tooltip = ['Secteur du stage 1',alt.Tooltip('count(Secteur du stage 1):Q',title='Total de stages')],
+    )
+
+st.altair_chart(bar_stage1.interactive()
+                    .properties(title = f'Nombre total de stage par secteur en première partie'),
+                    use_container_width = True)
+
+st.markdown("<hr style=' text-align : center; border-color : rgba(0,0,0,0); margin-top: 15px; margin-bottom: 15px;'>",unsafe_allow_html = True)
+st.markdown("<hr style=' text-align : center; border-color : rgba(0,0,0,0); margin-top: 15px; margin-bottom: 15px;'>",unsafe_allow_html = True)
+
+bar_stage2 = alt.Chart(annuaire).mark_bar().encode(
+        alt.X("Secteur 2:N",
+              axis=alt.Axis(labelAngle=-20),
+              sort=alt.EncodingSortField(field="Secteur 2", op="count", order='descending')),
+        alt.Y("count(Secteur 2):Q"),
+        tooltip = ['Secteur 2',alt.Tooltip('count(Secteur 2):Q',title='Total de stages')],
+    )
+
+st.altair_chart(bar_stage2.interactive()
+                    .properties(title = f'Nombre total de stage par secteur en deuxième partie'),
+                    use_container_width = True)
