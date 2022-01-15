@@ -9,7 +9,7 @@ st.markdown("""<h1 style='text-align: center; font-weight:bold;padding-bottom:15
                 Contact pour les stages</h1>""", unsafe_allow_html=True)
 
 path = os.path.dirname(__file__)
-my_file = path+'\hec.png'
+my_file = path+'/hec.png'
 st.sidebar.image(Image.open(my_file))
 
 st.sidebar.markdown("<hr style=' text-align : center; border-color : grey; margin-top: 15px; margin-bottom: 15px;'>", unsafe_allow_html = True)
