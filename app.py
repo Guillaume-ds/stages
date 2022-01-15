@@ -3,10 +3,11 @@ import pandas as pd
 from PIL import Image
 import os
 import altair as alt
+import streamlit_analytics
 
 
 st.set_page_config(page_title="Choix de stage",layout='wide')
-
+streamlit_analytics.start_tracking()
 st.markdown("""<h1 style='text-align: center; font-weight:bold;padding-bottom:15px; margin-bottom:70px;color:rgba(10,10,180,1);'>
                 Contact pour les stages</h1>""", unsafe_allow_html=True)
 
@@ -76,3 +77,5 @@ bar_stage2 = alt.Chart(annuaire).mark_bar().encode(
 st.altair_chart(bar_stage2.interactive()
                     .properties(title = f'Nombre total de stage par secteur en deuxième partie'),
                     use_container_width = True)
+
+streamlit_analytics.stop_tracking()
